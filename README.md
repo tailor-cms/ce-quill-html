@@ -1,7 +1,6 @@
-# tce-template
+# tce-quill-html
 
-Base template for Tailor Content Element Kit. For more details see
-[docs](https://tailor-cms.github.io/xt/).
+Tailor Quill HTML editor component.
 
 ## Usage
 
