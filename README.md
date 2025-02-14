@@ -1,4 +1,4 @@
-# tce-quill-html
+# ce-quill-html
 
 Tailor Quill HTML editor component.
 

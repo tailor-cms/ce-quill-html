@@ -1,6 +1,6 @@
 {
   "name": "@tailor-cms/ce-quill-html-server",
-  "description": "Tailor CMS Quill HTML editor",
+  "description": "Tailor CMS Quill HTML editor server component",
   "author": "Studion <info@gostudion.com> (https://github.com/tailor-cms)",
   "type": "module",
   "version": "0.0.1",
