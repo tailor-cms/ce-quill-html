@@ -29,6 +29,7 @@ defineEmits(['update:modelValue']);
 
 const editor = ref<InstanceType<typeof QuillyEditor>>();
 let quill: Quill | null = null;
+
 const options = {
   theme: CustomTheme.NAME,
   modules: {
@@ -44,7 +45,7 @@ const options = {
       },
     },
   },
-  placeholder: 'Compose an epic...',
+  placeholder: 'Enter your text...',
   readOnly: false,
 };
 

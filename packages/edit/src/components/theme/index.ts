@@ -1,4 +1,7 @@
+import 'tippy.js/dist/tippy.css';
+import tippy, { Instance } from 'tippy.js';
 import IconPicker from 'quill/ui/icon-picker';
+import Picker from 'quill/ui/picker';
 import Quill from 'quill';
 import SnowTheme from 'quill/themes/snow';
 
@@ -45,33 +48,21 @@ const colors = [
 ];
 const reQuillControl = /^ql-/;
 
-// class ToolbarTooltip extends Tooltip {
-//   constructor(input, showDelay = 350) {
-//     const isPicker = Boolean(input.select);
-//     const reference = isPicker ? input.container : input;
-//     const title = isPicker ? input.select.dataset.title : input.dataset.title;
-//     super(reference, {
-//       placement: 'bottom',
-//       delay: { show: showDelay, hide: 0 },
-//       title
-//     });
-//     if (isPicker) return this._interceptToggle(input);
-//     input.addEventListener('click', this.hide);
-//   }
+const createTooltip = (input: Picker | HTMLElement, showDelay = 350) => {
+  const isPicker = input instanceof Picker;
+  const reference = isPicker ? input.container : input;
+  const title = isPicker ? input.select.dataset.title : input.dataset.title;
 
-//   _show(reference, options) {
-//     if (reference.classList.contains('ql-expanded')) return;
-//     return super._show(reference, options);
-//   }
-
-//   _interceptToggle(picker) {
-//     const { togglePicker } = picker;
-//     picker.togglePicker = () => {
-//       this.hide();
-//       return togglePicker.call(picker);
-//     };
-//   }
-// }
+  tippy(reference, {
+    content: title || '',
+    placement: 'bottom',
+    delay: [showDelay, 0],
+    trigger: 'mouseenter focus',
+    onShow: () => {
+      if (reference.classList.contains('ql-expanded')) return false;
+    },
+  });
+};
 
 export default () => {
   Quill.register(`modules/${ImageEmbed.NAME}`, ImageEmbed, true);
@@ -97,6 +88,7 @@ export default () => {
 
     extendToolbar(toolbar: any) {
       super.extendToolbar(toolbar);
+      this.buildTooltips();
     }
 
     buildButtons(buttons: any) {
@@ -144,10 +136,10 @@ export default () => {
       }
     }
 
-    // buildTooltips() {
-    //   this.pickers.forEach((picker) => new ToolbarTooltip(picker));
-    //   this.buttons.forEach((button) => new ToolbarTooltip(button));
-    // }
+    buildTooltips() {
+      this.pickers.forEach((picker) => createTooltip(picker));
+      this.buttons.forEach((button) => createTooltip(button));
+    }
   };
 };
 
