@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <p>Edit element top toolbar {{ element?.id }}</p>
-  </div>
+  <EditorToolbar />
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue';
+import EditorToolbar from './EditorToolbar.vue';
 
 defineProps<{ element: Element }>();
 defineEmits(['save']);

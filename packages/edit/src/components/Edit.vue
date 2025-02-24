@@ -1,42 +1,58 @@
 <template>
   <div class="tce-container">
-    <div>This is Edit version of the content element id: {{ element?.id }}</div>
-    <div class="mt-6 mb-2">
-      Counter:
-      <span class="font-weight-bold">{{ element.data.count }}</span>
-    </div>
-    <button @click="increment">Increment</button>
+    <ElementPlaceholder
+      v-if="!isFocused && !content && showPlaceholder"
+      :is-disabled="isDisabled"
+      :is-focused="isFocused"
+      :name="`${manifest.name} component`"
+      active-icon="mdi-arrow-up"
+      active-placeholder="Use toolbar to upload the image"
+      icon="mdi-image-plus"
+    />
+    <template v-else>
+      <QuillEditor v-if="isFocused" v-model="content" />
+      <div v-else class="ql-container ql-snow">
+        <!-- eslint-disable vue/no-v-html -->
+        <div class="ql-editor" v-html="content"></div>
+        <!-- eslint-enable -->
+      </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps } from 'vue';
-import { Element } from '@tailor-cms/ce-quill-html-manifest';
+import { defineEmits, defineProps, ref } from 'vue';
+import manifest, { Element } from '@tailor-cms/ce-quill-html-manifest';
+import { ElementPlaceholder } from '@tailor-cms/core-components';
 
-const emit = defineEmits(['save']);
-const props = defineProps<{ element: Element; isFocused: boolean }>();
+import QuillEditor from './QuillEditor.vue';
 
-const increment = () => {
-  const { data } = props.element;
-  const count = data.count + 1;
-  emit('save', { ...data, count });
-};
+interface Props {
+  element: Element;
+  isFocused?: boolean;
+  isDisabled?: boolean;
+  isDragged?: boolean;
+  showPlaceholder?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isFocused: false,
+  isDisabled: false,
+  isDragged: false,
+  showPlaceholder: true,
+});
+defineEmits(['save']);
+
+const content = ref<string>(props.element.data.content ?? '');
 </script>
 
 <style scoped>
 .tce-container {
-  background-color: transparent;
-  margin-top: 1rem;
-  padding: 1.5rem;
-  border: 2px dashed #888;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
+  text-align: left;
 }
 
-button {
-  margin: 1rem 0 0 0;
-  padding: 0.25rem 1rem;
-  background-color: #eee;
-  border: 1px solid #444;
+.ql-container.ql-snow {
+  border: none;
+  font-size: 1rem;
 }
 </style>
