@@ -1,9 +1,9 @@
 import 'tippy.js/dist/tippy.css';
-import tippy, { Instance } from 'tippy.js';
 import IconPicker from 'quill/ui/icon-picker';
 import Picker from 'quill/ui/picker';
 import Quill from 'quill';
 import SnowTheme from 'quill/themes/snow';
+import tippy from 'tippy.js';
 
 import mdiIcons, { getMdiIcon } from './toolbar-icons.ts';
 import ColorPicker from './ui/color-picker.ts';
@@ -68,14 +68,14 @@ export default () => {
   Quill.register(`modules/${ImageEmbed.NAME}`, ImageEmbed, true);
 
   const { toolbar: baseToolbar } = SnowTheme.DEFAULTS.modules;
-  const toolbar = {
-    handlers: {
-      ...baseToolbar?.handlers,
-      image: function (this: any) {
-        this.quill.tooltips.imageEmbed.show();
-      }.bind(this),
-    },
-  };
+  // const toolbar = {
+  //   handlers: {
+  //     ...baseToolbar?.handlers,
+  //     image() {
+  //       this.quill.tooltips.imageEmbed.show();
+  //     },
+  //   },
+  // };
 
   return class TailorTheme extends SnowTheme {
     static NAME = 'tailor';
@@ -83,7 +83,7 @@ export default () => {
     pickers: any[] = [];
 
     static DEFAULTS = {
-      modules: { toolbar },
+      modules: { toolbar: baseToolbar?.handlers },
     };
 
     extendToolbar(toolbar: any) {
