@@ -1,13 +1,11 @@
 <template>
-  <div class="tce-container">
-    <QuillyEditor
-      ref="editor"
-      :model-value="modelValue"
-      :options="options"
-      @ready="onQuillReady"
-      @update:model-value="$emit('update:modelValue', $event)"
-    />
-  </div>
+  <QuillyEditor
+    ref="editor"
+    :model-value="modelValue"
+    :options="options"
+    @ready="onQuillReady"
+    @update:model-value="$emit('update:modelValue', $event)"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -61,26 +59,3 @@ onMounted(() => {
   quill = editor.value?.initialize(Quill) ?? null;
 });
 </script>
-
-<style scoped>
-.tce-container {
-  text-align: left;
-}
-
-.ql-container.ql-snow {
-  border: none;
-  font-size: 1rem;
-}
-
-.ql-editor {
-  min-height: 10.5rem;
-
-  &.ql-blank::before {
-    width: 100%;
-  }
-
-  img {
-    vertical-align: initial;
-  }
-}
-</style>

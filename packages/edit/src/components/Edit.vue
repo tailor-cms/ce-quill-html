@@ -2,12 +2,10 @@
   <div class="tce-container">
     <ElementPlaceholder
       v-if="!isFocused && !content && showPlaceholder"
+      :icon="manifest.ui.icon"
       :is-disabled="isDisabled"
       :is-focused="isFocused"
       :name="`${manifest.name} component`"
-      active-icon="mdi-arrow-up"
-      active-placeholder="Use toolbar to upload the image"
-      icon="mdi-image-plus"
     />
     <template v-else>
       <QuillEditor v-if="isFocused" v-model="content" />
@@ -46,7 +44,7 @@ defineEmits(['save']);
 const content = ref<string>(props.element.data.content ?? '');
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .tce-container {
   text-align: left;
 }
@@ -54,5 +52,17 @@ const content = ref<string>(props.element.data.content ?? '');
 .ql-container.ql-snow {
   border: none;
   font-size: 1rem;
+}
+
+:deep(.ql-editor) {
+  min-height: 10.5rem;
+
+  &.ql-blank::before {
+    width: 100%;
+  }
+
+  img {
+    vertical-align: initial;
+  }
 }
 </style>

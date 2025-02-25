@@ -16,9 +16,9 @@ interface ColorPickerOptions {
 }
 
 export default class ExtendedColorPicker extends ColorPicker {
-  quill: Quill;
-  type: string;
-  options: any;
+  declare options: HTMLElement;
+  readonly quill: Quill;
+  readonly type: string;
 
   constructor(quill: Quill, options: ColorPickerOptions) {
     super(options.select, options.label);

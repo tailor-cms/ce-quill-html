@@ -1,6 +1,6 @@
 const isString = (arg: any) => typeof arg === 'string';
 
-const mdiIcons: Record<string, any> = {
+const mdiIcons: Record<string, string | Record<string, string>> = {
   undo: 'undo',
   redo: 'redo',
   align: {
@@ -51,12 +51,21 @@ export default mdiIcons;
 
 const textColor = `
   <span style="position: relative;">
-    <span class="icon mdi mdi-format-color-text" style="position: absolute;"></span>
-    <span class="icon mdi mdi-color-helper" style="position: absolute;"></span>
-  </span>`;
+    <i class="icon mdi-format-color-text mdi v-icon notranslate v-theme--default"></i>
+    <i class="icon mdi-color-helper mdi v-icon notranslate v-theme--default" style="position: absolute; top: 0; left: 0;"></i>
+  </span>
+`;
+
+const bgColor = `
+  <span style="position: relative;">
+    <i class="icon mdi-format-color-highlight mdi v-icon notranslate v-theme--default"></i>
+    <i class="icon mdi-color-helper mdi v-icon notranslate v-theme--default" style="position: absolute; top:0; left: 0;"></i>
+  </span>
+`;
 
 export function getMdiIcon(name: string, value: string = '') {
   if (name === 'color') return textColor;
+  if (name === 'background') return bgColor;
   const icon = mdiIcons[name];
   const code = isString(icon) ? icon : icon[value];
   return `<span class="icon mdi mdi-${code}"></span>`;

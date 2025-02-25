@@ -4,6 +4,7 @@ import Picker from 'quill/ui/picker';
 import Quill from 'quill';
 import SnowTheme from 'quill/themes/snow';
 import tippy from 'tippy.js';
+import Toolbar from 'quill/modules/toolbar';
 
 import mdiIcons, { getMdiIcon } from './toolbar-icons.ts';
 import ColorPicker from './ui/color-picker.ts';
@@ -48,7 +49,7 @@ const colors = [
 ];
 const reQuillControl = /^ql-/;
 
-const createTooltip = (input: Picker | HTMLElement, showDelay = 350) => {
+const createTooltip = (input: Picker | HTMLButtonElement, showDelay = 350) => {
   const isPicker = input instanceof Picker;
   const reference = isPicker ? input.container : input;
   const title = isPicker ? input.select.dataset.title : input.dataset.title;
@@ -67,47 +68,44 @@ const createTooltip = (input: Picker | HTMLElement, showDelay = 350) => {
 export default () => {
   Quill.register(`modules/${ImageEmbed.NAME}`, ImageEmbed, true);
 
-  // const { toolbar: baseToolbar } = SnowTheme.DEFAULTS.modules;
-  // const toolbar = {
-  //   handlers: {
-  //     ...baseToolbar?.handlers,
-  //     image() {
-  //       this.quill.tooltips.imageEmbed.show();
-  //     },
-  //   },
-  // };
+  const { toolbar } = SnowTheme.DEFAULTS.modules;
 
   return class TailorTheme extends SnowTheme {
     static NAME = 'tailor';
-    buttons: any[] = [];
-    pickers: any[] = [];
+    static DEFAULTS = {
+      modules: {
+        toolbar,
+        [ImageEmbed.NAME]: true,
+      },
+    };
 
-    // static DEFAULTS = {
-    //   modules: { toolbar },
-    // };
-
-    extendToolbar(toolbar: any) {
+    extendToolbar(toolbar: Toolbar) {
       super.extendToolbar(toolbar);
-      this.buildTooltips();
+      this.pickers.forEach((picker) => createTooltip(picker));
     }
 
-    buildButtons(buttons: any) {
-      buttons.forEach((it: any) => buildButton(it));
-      this.buttons = buttons;
+    buildButtons(buttons: NodeListOf<HTMLButtonElement>) {
+      buttons.forEach((it) => {
+        buildButton(it);
+        createTooltip(it);
+      });
     }
 
-    buildPickers(selects: any, icons: any) {
-      selects = Array.from(selects);
-      const background = remove(selects, (it: any) =>
+    buildPickers(
+      selects: NodeListOf<HTMLSelectElement>,
+      icons: Record<string, string | Record<string, string>>,
+    ) {
+      const filteredSelects = Array.from(selects);
+      const background = remove(filteredSelects, (it: HTMLSelectElement) =>
         it.classList.contains('ql-background'),
       );
-      const color = remove(selects, (it: any) =>
+      const color = remove(filteredSelects, (it: HTMLSelectElement) =>
         it.classList.contains('ql-color'),
       );
-      const align = remove(selects, (it: any) =>
+      const align = remove(filteredSelects, (it: HTMLSelectElement) =>
         it.classList.contains('ql-align'),
       );
-      super.buildPickers(selects, icons);
+      super.buildPickers(filteredSelects as any, icons);
       if (background) {
         fillSelect(background, colors, '#ffffff');
         this.pickers.push(
@@ -129,22 +127,17 @@ export default () => {
         );
       }
       if (align) {
-        const icons = mapKeys(mdiIcons.align, (_: any, icon: string) =>
+        const icons = mapKeys(mdiIcons.align, (_key: string, icon: string) =>
           getMdiIcon('align', icon),
         );
         this.pickers.push(new IconPicker(align, icons));
       }
     }
-
-    buildTooltips() {
-      this.pickers.forEach((picker) => createTooltip(picker));
-      this.buttons.forEach((button) => createTooltip(button));
-    }
   };
 };
 
-function buildButton(button: any) {
-  let name = Array.from(button.classList).find((it: any) =>
+function buildButton(button: HTMLButtonElement) {
+  let name = Array.from(button.classList).find((it: string) =>
     reQuillControl.test(it),
   ) as string;
   if (!name) return;
@@ -156,8 +149,12 @@ function buildButton(button: any) {
   button.innerHTML = getMdiIcon(name, button.value);
 }
 
-function fillSelect(select: any, values: any, defaultValue = '') {
-  values.forEach((value: any) => {
+function fillSelect(
+  select: HTMLSelectElement,
+  values: string[],
+  defaultValue = '',
+) {
+  values.forEach((value) => {
     const option = document.createElement('option');
     if (value === defaultValue) {
       option.setAttribute('selected', 'selected');
@@ -175,7 +172,7 @@ function mapKeys(obj: any, cb: any) {
   }, {});
 }
 
-function remove(arr: any, cb: any) {
+function remove<T>(arr: T[], cb: (it: T) => boolean) {
   const index = arr.findIndex(cb);
   return arr.splice(index, 1)[0];
 }

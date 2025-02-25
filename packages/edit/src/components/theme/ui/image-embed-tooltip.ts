@@ -12,11 +12,11 @@ export default class ImageEmbedTooltip extends Tooltip {
     </div>
   `;
 
-  padding: string;
-  textbox: HTMLInputElement | null;
-  btnAction: HTMLAnchorElement | null;
+  readonly padding: string;
+  readonly textbox: HTMLInputElement | null;
+  readonly btnAction: HTMLAnchorElement | null;
 
-  constructor(quill: any, bounds: any, { spacing = 0 } = {}) {
+  constructor(quill: Quill, bounds: HTMLElement, { spacing = 0 } = {}) {
     super(quill, bounds);
     this.padding = ' '.repeat(spacing);
     this.textbox = this.root.querySelector('input.url');
