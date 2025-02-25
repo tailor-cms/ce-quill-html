@@ -248,39 +248,25 @@ $icon-size: 1.5rem;
   }
 }
 
-.ql-toolbar .tooltip {
+.ql-toolbar .tippy-box {
   $background-color: #2a2a2a;
   $text-color: #fff;
-  $offset: 0.125rem;
   $arrow-size: 0.375rem;
 
-  position: absolute;
-  z-index: 999;
-  display: block;
-  margin-top: $arrow-size + $offset;
-  border: 1px solid #fff;
-  border-radius: 0;
   padding: 0.375rem 0.75rem;
-  background: $background-color;
-  cursor: default;
-  line-height: 1.42;
-  user-select: none;
+  background: rgba($background-color, 0.9);
+  border-radius: 8px;
 
-  &-arrow {
-    position: absolute;
+  .tippy-arrow {
     top: -$arrow-size;
-    left: calc(50% - #{$arrow-size});
-    margin: 0 $arrow-size;
     border: $arrow-size solid transparent;
-    width: 0;
-    height: 0;
     border-top-width: 0;
-    border-bottom-color: $background-color;
+    border-bottom-color: rgba($background-color, 0.9);
   }
 
-  &-inner {
+  .tippy-content {
     padding: 0;
-    font-size: 0.96rem;
+    font-size: 0.875rem;
     font-weight: 500;
     text-align: center;
     color: $text-color;

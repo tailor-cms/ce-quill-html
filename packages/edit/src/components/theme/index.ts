@@ -1,4 +1,3 @@
-import 'tippy.js/dist/tippy.css';
 import IconPicker from 'quill/ui/icon-picker';
 import Picker from 'quill/ui/picker';
 import Quill from 'quill';
@@ -56,9 +55,10 @@ const createTooltip = (input: Picker | HTMLButtonElement, showDelay = 350) => {
 
   tippy(reference, {
     content: title || '',
+    appendTo: 'parent',
     placement: 'bottom',
     delay: [showDelay, 0],
-    trigger: 'mouseenter focus',
+    trigger: 'click focus',
     onShow: () => {
       if (reference.classList.contains('ql-expanded')) return false;
     },
