@@ -14,7 +14,8 @@ export default class ExtendedTooltip extends Tooltip {
     super.show();
     this.isOpen = true;
     setTimeout(
-      () => document.body.addEventListener('click', (e) => this._onClick(e)),
+      () =>
+        document.body.addEventListener('mousedown', (e) => this._onClick(e)),
       0,
     );
     const bounds = this.quill.getBounds(this.quill.selection.savedRange);
@@ -24,7 +25,7 @@ export default class ExtendedTooltip extends Tooltip {
   hide() {
     super.hide();
     this.isOpen = false;
-    document.body.removeEventListener('click', (e) => this._onClick(e));
+    document.body.removeEventListener('mousedown', (e) => this._onClick(e));
   }
 
   _onClick(e: Event) {
