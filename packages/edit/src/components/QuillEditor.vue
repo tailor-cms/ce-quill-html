@@ -21,6 +21,7 @@ import { QuillyEditor } from 'vue-quilly';
 import createCustomTheme from './theme/index';
 
 const CustomTheme = createCustomTheme();
+Quill.register(`themes/${CustomTheme.NAME}`, CustomTheme, true);
 
 const props = defineProps<{
   modelValue: string;
@@ -48,10 +49,6 @@ const options = {
   placeholder: 'Enter your text...',
   readOnly: false,
 };
-
-onMounted(() => {
-  Quill.register(`themes/${CustomTheme.NAME}`, CustomTheme, true);
-});
 
 const onQuillReady = (quill: Quill) => {
   quill.focus();

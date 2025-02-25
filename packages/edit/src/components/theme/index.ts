@@ -67,7 +67,7 @@ const createTooltip = (input: Picker | HTMLElement, showDelay = 350) => {
 export default () => {
   Quill.register(`modules/${ImageEmbed.NAME}`, ImageEmbed, true);
 
-  const { toolbar: baseToolbar } = SnowTheme.DEFAULTS.modules;
+  // const { toolbar: baseToolbar } = SnowTheme.DEFAULTS.modules;
   // const toolbar = {
   //   handlers: {
   //     ...baseToolbar?.handlers,
@@ -82,9 +82,9 @@ export default () => {
     buttons: any[] = [];
     pickers: any[] = [];
 
-    static DEFAULTS = {
-      modules: { toolbar: baseToolbar?.handlers },
-    };
+    // static DEFAULTS = {
+    //   modules: { toolbar },
+    // };
 
     extendToolbar(toolbar: any) {
       super.extendToolbar(toolbar);
