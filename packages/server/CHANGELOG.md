@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-server
 
+## 0.0.4
+
+### Patch Changes
+
+- Update type id.
+
 ## 0.0.3
 
 ### Patch Changes
