@@ -5,7 +5,7 @@ import type {
 } from './interfaces';
 
 // Element unique id within the target system (e.g. Tailor)
-export const type = 'QUILL_HTML';
+export const type = 'HTML';
 
 // Display name (e.g. shown to the author)
 export const name = 'Quill HTML';
