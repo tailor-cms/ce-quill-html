@@ -73,11 +73,14 @@ watch(
 
 :deep(.ql-editor) {
   min-height: 5rem;
+  padding: 0.5rem;
 
   &.ql-blank::before {
     width: 100%;
     color: rgba(0, 0, 0, 0.5);
     font-style: normal;
+    left: 0.5rem;
+    right: 0.5rem;
   }
 
   img {
