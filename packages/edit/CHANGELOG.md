@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-edit
 
+## 0.0.6
+
+### Patch Changes
+
+- Update placeholder spacings.
+
 ## 0.0.5
 
 ### Patch Changes
