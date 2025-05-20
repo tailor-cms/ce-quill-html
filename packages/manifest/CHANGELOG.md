@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-manifest
 
+## 0.0.5
+
+### Patch Changes
+
+- Bump tce-boot package and update accordingly.
+
 ## 0.0.4
 
 ### Patch Changes
