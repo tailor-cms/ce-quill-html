@@ -79,6 +79,9 @@ export default () => {
       },
     };
 
+    declare public options: any;
+    declare public quill: any;
+
     extendToolbar(toolbar: Toolbar) {
       super.extendToolbar(toolbar);
       this.pickers.forEach((picker) => createTooltip(picker));

@@ -1,27 +1,19 @@
 <template>
   <div class="tce-container">
-    <ElementPlaceholder
-      v-if="!isFocused && !content && showPlaceholder"
-      :icon="manifest.ui.icon"
-      :is-disabled="isDisabled"
-      :is-focused="isFocused"
-      :name="`${manifest.name} component`"
-    />
-    <template v-else>
-      <QuillEditor v-if="isFocused" v-model="content" />
-      <div v-else class="ql-container ql-snow">
-        <!-- eslint-disable vue/no-v-html -->
-        <div class="ql-editor" v-html="content"></div>
-        <!-- eslint-enable -->
-      </div>
-    </template>
+    <QuillEditor v-if="isFocused" v-model="content" />
+    <div v-else class="ql-container ql-snow">
+      <!-- eslint-disable vue/no-v-html -->
+      <div v-if="!isEmpty" class="ql-editor" v-html="content"></div>
+      <!-- eslint-enable -->
+      <div v-else class="ql-editor placeholder">Enter your text...</div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps, ref } from 'vue';
-import manifest, { Element } from '@tailor-cms/ce-quill-html-manifest';
-import { ElementPlaceholder } from '@tailor-cms/core-components';
+import { computed, defineEmits, defineProps, ref, watch } from 'vue';
+import debounce from 'lodash/debounce';
+import { Element } from '@tailor-cms/ce-quill-html-manifest';
 
 import QuillEditor from './QuillEditor.vue';
 
@@ -39,9 +31,30 @@ const props = withDefaults(defineProps<Props>(), {
   isDragged: false,
   showPlaceholder: true,
 });
-defineEmits(['save']);
+const emit = defineEmits(['save']);
 
 const content = ref<string>(props.element.data.content ?? '');
+const isEmpty = computed(() => !content.value.replace(/<[^>]*>/g, ''));
+const hasChanges = computed(() => {
+  const previousValue = props.element?.data?.content ?? '';
+  return previousValue !== content.value;
+});
+
+const save = () => {
+  if (!hasChanges.value) return;
+  const { element } = props;
+  emit('save', { ...element.data, content: content.value });
+};
+
+watch(
+  () => props.isFocused,
+  (val) => !val && save(),
+);
+
+watch(
+  content,
+  debounce(() => save(), 4000),
+);
 </script>
 
 <style lang="scss" scoped>
@@ -54,11 +67,17 @@ const content = ref<string>(props.element.data.content ?? '');
   font-size: 1rem;
 }
 
+.placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 :deep(.ql-editor) {
-  min-height: 10.5rem;
+  min-height: 5rem;
 
   &.ql-blank::before {
     width: 100%;
+    color: rgba(0, 0, 0, 0.5);
+    font-style: normal;
   }
 
   img {
