@@ -26,6 +26,7 @@
   "devDependencies": {
     "@tailor-cms/ce-quill-html-manifest": "workspace:*",
     "@tailor-cms/eslint-config": "0.0.2",
+    "@types/lodash": "^4.17.15",
     "@types/quill": "^2.0.14",
     "@vitejs/plugin-vue": "^5.2.1",
     "typescript": "^5.7.3",
@@ -36,7 +37,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@tailor-cms/core-components": "^1.0.26",
+    "lodash": "^4.17.21",
     "quill": "^2.0.3",
     "tippy.js": "^6.3.7",
     "vue-quilly": "^1.1.2"
