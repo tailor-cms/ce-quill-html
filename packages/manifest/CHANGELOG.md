@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-manifest
 
+## 0.0.7
+
+### Patch Changes
+
+- Update toolbar size.
+
 ## 0.0.6
 
 ### Patch Changes
