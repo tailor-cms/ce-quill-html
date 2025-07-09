@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import { computed, defineEmits, defineProps, ref, watch } from 'vue';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import { Element } from '@tailor-cms/ce-quill-html-manifest';
 
 import QuillEditor from './QuillEditor.vue';
