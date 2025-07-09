@@ -19,17 +19,15 @@ import QuillEditor from './QuillEditor.vue';
 
 interface Props {
   element: Element;
-  isFocused?: boolean;
-  isDisabled?: boolean;
   isDragged?: boolean;
-  showPlaceholder?: boolean;
+  isFocused?: boolean;
+  isReadonly?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isFocused: false,
-  isDisabled: false,
   isDragged: false,
-  showPlaceholder: true,
+  isFocused: false,
+  isReadonly: false,
 });
 const emit = defineEmits(['save']);
 

@@ -1,14 +1,14 @@
 <template>
   <div class="ce-quill-html-root">
     <!-- eslint-disable-next-line -->
-    <span v-html="data.content" />
+    <span v-html="element.data.content" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElementData } from '@tailor-cms/ce-quill-html-manifest';
+import { Element } from '@tailor-cms/ce-quill-html-manifest';
 
-defineProps<{ id: number; data: ElementData }>();
+defineProps<{ element: Element }>();
 </script>
 
 <style scoped lang="scss">
