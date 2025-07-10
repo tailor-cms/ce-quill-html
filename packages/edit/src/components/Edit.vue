@@ -12,24 +12,22 @@
 
 <script lang="ts" setup>
 import { computed, defineEmits, defineProps, ref, watch } from 'vue';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import { Element } from '@tailor-cms/ce-quill-html-manifest';
 
 import QuillEditor from './QuillEditor.vue';
 
 interface Props {
   element: Element;
-  isFocused?: boolean;
-  isDisabled?: boolean;
   isDragged?: boolean;
-  showPlaceholder?: boolean;
+  isFocused?: boolean;
+  isReadonly?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isFocused: false,
-  isDisabled: false,
   isDragged: false,
-  showPlaceholder: true,
+  isFocused: false,
+  isReadonly: false,
 });
 const emit = defineEmits(['save']);
 
