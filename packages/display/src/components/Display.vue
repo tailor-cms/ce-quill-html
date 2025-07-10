@@ -12,7 +12,6 @@ defineProps<{ element: Element }>();
 </script>
 
 <style scoped lang="scss">
-<style scoped lang="scss">
 .ce-quill-html-root {
   :deep(span) {
     * {
@@ -117,5 +116,4 @@ defineProps<{ element: Element }>();
     }
   }
 }
-</style>
 </style>
