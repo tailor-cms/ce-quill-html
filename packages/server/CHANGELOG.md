@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-server
 
+## 0.1.1
+
+### Patch Changes
+
+- Update the way existing content is applied.
+
 ## 0.1.0
 
 ### Minor Changes
