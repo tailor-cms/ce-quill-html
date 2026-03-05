@@ -50,9 +50,7 @@ const options = {
 
 const onQuillReady = (quill: Quill) => {
   quill.focus();
-  if (quill.root) {
-    quill.root.innerHTML = props.modelValue;
-  }
+  quill?.clipboard?.dangerouslyPasteHTML(props.modelValue);
 };
 
 onMounted(() => {
