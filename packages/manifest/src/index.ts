@@ -26,12 +26,15 @@ const ui = {
   forceFullWidth: false,
 };
 
+export const isEmpty = (data: ElementData): boolean => !data.content;
+
 const manifest: ElementManifest = {
   type,
   version,
   name,
   ssr: false,
   initState,
+  isEmpty,
   ui,
 };
 

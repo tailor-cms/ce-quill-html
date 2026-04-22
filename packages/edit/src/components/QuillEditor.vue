@@ -12,7 +12,7 @@
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
-import { defineEmits, defineProps, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Quill from 'quill';
 import { QuillyEditor } from 'vue-quilly';
 

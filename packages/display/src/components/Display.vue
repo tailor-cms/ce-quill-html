@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { Element } from '@tailor-cms/ce-quill-html-manifest';
+import type { Element } from '@tailor-cms/ce-quill-html-manifest';
 
 defineProps<{ element: Element }>();
 </script>
