@@ -12,8 +12,8 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
-import { debounce } from 'lodash-es';
 import type { Element, ElementData } from '@tailor-cms/ce-quill-html-manifest';
+import { debounce } from 'lodash-es';
 
 import QuillEditor from './QuillEditor.vue';
 
