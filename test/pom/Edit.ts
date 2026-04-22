@@ -35,31 +35,37 @@ export class Edit extends pom.EditPanel {
     this.qlEditor = this.editor.locator('.ql-editor');
     this.placeholder = this.editor.locator('.ql-editor.placeholder');
     const tb = this.topToolbar;
-    this.boldBtn = tb.locator('button.ql-bold');
-    this.italicBtn = tb.locator('button.ql-italic');
-    this.underlineBtn = tb.locator('button.ql-underline');
-    this.strikeBtn = tb.locator('button.ql-strike');
-    this.undoBtn = tb.locator('button.ql-undo');
-    this.redoBtn = tb.locator('button.ql-redo');
-    this.subscriptBtn = tb.locator('button.ql-script[value="sub"]');
-    this.superscriptBtn = tb.locator('button.ql-script[value="super"]');
-    this.heading1Btn = tb.locator('button.ql-header[value="1"]');
-    this.heading2Btn = tb.locator('button.ql-header[value="2"]');
-    this.blockquoteBtn = tb.locator('button.ql-blockquote');
-    this.codeBlockBtn = tb.locator('button.ql-code-block');
-    this.orderedListBtn = tb.locator('button.ql-list[value="ordered"]');
-    this.bulletListBtn = tb.locator('button.ql-list[value="bullet"]');
-    this.increaseIndentBtn = tb.locator('button.ql-indent[value="+1"]');
-    this.decreaseIndentBtn = tb.locator('button.ql-indent[value="-1"]');
-    this.linkBtn = tb.locator('button.ql-link');
-    this.imageBtn = tb.locator('button.ql-image');
-    this.clearBtn = tb.locator('button.ql-clean');
-    this.directionBtn = tb.locator('button.ql-direction[value="rtl"]');
-    this.fontSelect = tb.locator('select.ql-font');
-    this.headerSelect = tb.locator('select.ql-header');
-    this.colorSelect = tb.locator('select.ql-color');
-    this.backgroundSelect = tb.locator('select.ql-background');
-    this.alignSelect = tb.locator('select.ql-align');
+    this.boldBtn = tb.getByRole('button', { name: 'Bold' });
+    this.italicBtn = tb.getByRole('button', { name: 'Italic' });
+    this.underlineBtn = tb.getByRole('button', { name: 'Underline' });
+    this.strikeBtn = tb.getByRole('button', { name: 'Strikethrough' });
+    this.undoBtn = tb.getByRole('button', { name: 'Undo' });
+    this.redoBtn = tb.getByRole('button', { name: 'Redo' });
+    this.subscriptBtn = tb.getByRole('button', { name: 'Subscript' });
+    this.superscriptBtn = tb.getByRole('button', { name: 'Superscript' });
+    this.heading1Btn = tb.getByRole('button', { name: 'Heading 1' });
+    this.heading2Btn = tb.getByRole('button', { name: 'Heading 2' });
+    this.blockquoteBtn = tb.getByRole('button', { name: 'Quote' });
+    this.codeBlockBtn = tb.getByRole('button', { name: 'Code' });
+    this.orderedListBtn = tb.getByRole('button', { name: 'Numbered list' });
+    this.bulletListBtn = tb.getByRole('button', { name: 'Bulleted List' });
+    this.increaseIndentBtn = tb.getByRole('button', {
+      name: 'Increase indent',
+    });
+    this.decreaseIndentBtn = tb.getByRole('button', {
+      name: 'Decrease indent',
+    });
+    this.linkBtn = tb.getByRole('button', { name: 'Insert link...' });
+    this.imageBtn = tb.getByRole('button', { name: 'Image' });
+    this.clearBtn = tb.getByRole('button', { name: 'Clear formatting' });
+    this.directionBtn = tb.getByRole('button', { name: 'Text direction' });
+    this.fontSelect = tb.getByRole('combobox', { name: 'Font' });
+    this.headerSelect = tb.getByRole('combobox', { name: 'Style' });
+    this.colorSelect = tb.getByRole('combobox', { name: 'Text color' });
+    this.backgroundSelect = tb.getByRole('combobox', {
+      name: 'Highlight color',
+    });
+    this.alignSelect = tb.getByRole('combobox', { name: 'Alignment' });
   }
 
   get allToolbarButtons(): Locator[] {
