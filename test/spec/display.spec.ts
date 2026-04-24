@@ -7,6 +7,7 @@ const ELEMENT_ID = 'test-quill-html-display';
 
 test.beforeEach(async ({ page }) => {
   await elementClient.reset(ELEMENT_ID);
+  await elementClient.resetState(ELEMENT_ID);
   await page.goto(`/?id=${ELEMENT_ID}`);
   await page.waitForLoadState('networkidle');
 });
@@ -143,8 +144,4 @@ test.describe('Content rendering', () => {
       'rgb(252, 220, 0)',
     );
   });
-});
-
-test.afterAll(async () => {
-  await elementClient.reset(ELEMENT_ID);
 });
