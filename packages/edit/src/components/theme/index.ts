@@ -51,7 +51,9 @@ const reQuillControl = /^ql-/;
 const createTooltip = (input: Picker | HTMLButtonElement, showDelay = 350) => {
   const isPicker = input instanceof Picker;
   const reference = isPicker ? input.container : input;
-  const title = isPicker ? input.select.dataset.title : input.dataset.title;
+  const title = isPicker
+    ? input.select.getAttribute('aria-label')
+    : input.getAttribute('aria-label');
 
   tippy(reference, {
     content: title || '',

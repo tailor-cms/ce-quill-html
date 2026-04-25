@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineEmits, defineProps, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import type { Element, ElementData } from '@tailor-cms/ce-quill-html-manifest';
 import { debounce } from 'lodash-es';
-import { Element } from '@tailor-cms/ce-quill-html-manifest';
 
 import QuillEditor from './QuillEditor.vue';
 
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   isFocused: false,
   isReadonly: false,
 });
-const emit = defineEmits(['save']);
+const emit = defineEmits<{ save: [data: ElementData] }>();
 
 const content = ref<string>(props.element.data.content ?? '');
 const isEmpty = computed(() => !content.value.replace(/<[^>]*>/g, ''));

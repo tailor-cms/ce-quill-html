@@ -4,113 +4,113 @@
   <div class="tce-html-toolbar">
     <div id="quillToolbar" @mousedown.prevent="() => {}">
       <span class="ql-formats">
-        <button class="ql-undo" data-title="Undo" type="button"></button>
-        <button class="ql-redo" data-title="Redo" type="button"></button>
+        <button aria-label="Undo" class="ql-undo" type="button"></button>
+        <button aria-label="Redo" class="ql-redo" type="button"></button>
       </span>
       <span class="ql-formats">
-        <select class="ql-font" data-title="Font"></select>
-        <select class="ql-header" data-title="Style"></select>
+        <select aria-label="Font" class="ql-font"></select>
+        <select aria-label="Style" class="ql-header"></select>
       </span>
       <span class="ql-formats">
-        <button class="ql-bold" data-title="Bold" type="button"></button>
-        <button class="ql-italic" data-title="Italic" type="button"></button>
+        <button aria-label="Bold" class="ql-bold" type="button"></button>
+        <button aria-label="Italic" class="ql-italic" type="button"></button>
         <button
+          aria-label="Underline"
           class="ql-underline"
-          data-title="Underline"
           type="button"
         ></button>
         <button
+          aria-label="Strikethrough"
           class="ql-strike"
-          data-title="Strikethrough"
           type="button"
         ></button>
       </span>
       <span class="ql-formats">
-        <select class="ql-color" data-title="Text color"></select>
-        <select class="ql-background" data-title="Highlight color"></select>
+        <select aria-label="Text color" class="ql-color"></select>
+        <select aria-label="Highlight color" class="ql-background"></select>
       </span>
       <span class="ql-formats">
         <button
+          aria-label="Subscript"
           class="ql-script"
-          data-title="Subscript"
           type="button"
           value="sub"
         ></button>
         <button
+          aria-label="Superscript"
           class="ql-script"
-          data-title="Superscript"
           type="button"
           value="super"
         ></button>
       </span>
       <span class="ql-formats">
         <button
+          aria-label="Heading 1"
           class="ql-header"
-          data-title="Heading 1"
           type="button"
           value="1"
         ></button>
         <button
+          aria-label="Heading 2"
           class="ql-header"
-          data-title="Heading 2"
           type="button"
           value="2"
         ></button>
-        <button class="ql-blockquote" data-title="Quote" type="button"></button>
-        <button class="ql-code-block" data-title="Code" type="button"></button>
+        <button aria-label="Quote" class="ql-blockquote" type="button"></button>
+        <button aria-label="Code" class="ql-code-block" type="button"></button>
       </span>
       <span class="ql-formats">
         <button
+          aria-label="Numbered list"
           class="ql-list"
-          data-title="Numbered list"
           type="button"
           value="ordered"
         ></button>
         <button
+          aria-label="Bulleted List"
           class="ql-list"
-          data-title="Bulleted List"
           type="button"
           value="bullet"
         ></button>
         <button
+          aria-label="Decrease indent"
           class="ql-indent"
-          data-title="Decrease indent"
           type="button"
           value="-1"
         ></button>
         <button
+          aria-label="Increase indent"
           class="ql-indent"
-          data-title="Increase indent"
           type="button"
           value="+1"
         ></button>
       </span>
       <span class="ql-formats">
-        <select class="ql-align" data-title="Alignment">
+        <select aria-label="Alignment" class="ql-align">
           <option selected></option>
           <option value="center"></option>
           <option value="right"></option>
           <option value="justify"></option>
         </select>
         <button
+          aria-label="Text direction"
           class="ql-direction"
-          data-title="Text direction"
           type="button"
           value="rtl"
         ></button>
       </span>
       <span class="ql-formats">
         <button
+          aria-label="Insert link..."
           class="ql-link"
-          data-title="Insert link..."
           type="button"
         ></button>
-        <button class="ql-image" data-title="Image" type="button"></button>
+        <button aria-label="Image" class="ql-image" type="button"></button>
       </span>
       <span class="ql-formats">
         <button
+          aria-label="Clear formatting"
           class="ql-clean"
-          data-title="Clear formatting"
           type="button"
         ></button>
       </span>
