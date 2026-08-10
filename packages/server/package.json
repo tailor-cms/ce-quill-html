@@ -2,6 +2,13 @@
   "name": "@tailor-cms/ce-quill-html-server",
   "description": "Tailor CMS Quill HTML editor server component",
   "author": "Studion <info@gostudion.com> (https://github.com/tailor-cms)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tailor-cms/ce-quill-html.git",
+    "directory": "packages/server"
+  },
+  "homepage": "https://github.com/tailor-cms/ce-quill-html#readme",
+  "bugs": "https://github.com/tailor-cms/ce-quill-html/issues",
   "type": "module",
   "version": "2.0.3",
   "exports": {
