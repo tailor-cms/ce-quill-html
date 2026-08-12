@@ -11,7 +11,7 @@
   "homepage": "https://github.com/tailor-cms/ce-quill-html#readme",
   "bugs": "https://github.com/tailor-cms/ce-quill-html/issues",
   "type": "module",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@tailor-cms/ce-quill-html-manifest": "workspace:*",
-    "@tailor-cms/eslint-config": "2.0.3",
+    "@tailor-cms/eslint-config": "2.1.0",
     "@types/lodash-es": "^4.17.12",
     "@types/quill": "^2.0.14",
     "@vitejs/plugin-vue": "^6.0.8",
@@ -48,7 +48,7 @@
     "vuetify": "^4.1.8"
   },
   "dependencies": {
-    "@tailor-cms/cek-common": "2.0.3",
+    "@tailor-cms/cek-common": "2.1.0",
     "lodash-es": "^4.18.1",
     "quill": "^2.0.3",
     "tippy.js": "^6.3.7",
