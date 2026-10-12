@@ -205,6 +205,7 @@ $button-radius: 6px;
     padding: 0 !important;
   }
 
+  // Icon + chevron dropdowns, ~40px wide like the TipTap toolbar
   .ql-header:not(button),
   .ql-font {
     width: unset !important;
@@ -213,8 +214,24 @@ $button-radius: 6px;
     .ql-picker-label {
       display: flex;
       align-items: center;
-      padding: 0 1.5rem 0 0.5rem;
+      padding: 0 0 0 0.25rem;
       border-radius: $button-radius;
+
+      // Selected option text drawn by the Snow theme
+      &::before {
+        display: none;
+      }
+    }
+
+    .ql-picker-chevron {
+      width: $icon-size;
+      margin-left: -0.25rem;
+      font-size: $icon-size;
+      line-height: $icon-size;
+    }
+
+    .ql-picker-options {
+      min-width: 9rem;
       font-size: 0.875rem;
     }
   }

@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-edit
 
+## 3.0.2
+
+### Patch Changes
+
+- Match the toolbar to the TipTap HTML editor: button, icon and separator sizing, centered icons, icon dropdowns for font and heading, and Vuetify theme colors for icons, hover/active states, menus, tooltips and the placeholder
+
 ## 3.0.1
 
 ### Patch Changes

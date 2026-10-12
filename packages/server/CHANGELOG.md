@@ -1,5 +1,11 @@
 # @tailor-cms/ce-quill-html-server
 
+## 3.0.2
+
+### Patch Changes
+
+- @tailor-cms/ce-quill-html-manifest@3.0.2
+
 ## 3.0.1
 
 ### Patch Changes

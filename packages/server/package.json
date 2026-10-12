@@ -11,7 +11,7 @@
   "homepage": "https://github.com/tailor-cms/ce-quill-html#readme",
   "bugs": "https://github.com/tailor-cms/ce-quill-html/issues",
   "type": "module",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

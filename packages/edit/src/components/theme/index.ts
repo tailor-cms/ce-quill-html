@@ -8,6 +8,7 @@ import Toolbar from 'quill/modules/toolbar';
 import mdiIcons, { getMdiIcon } from './toolbar-icons.ts';
 import ColorPicker from './ui/color-picker.ts';
 import ImageEmbed from './modules/image-embed.ts';
+import { useIconLabel } from './ui/icon-label.ts';
 
 const colors = [
   '#000000',
@@ -111,6 +112,11 @@ export default () => {
         it.classList.contains('ql-align'),
       );
       super.buildPickers(filteredSelects as any, icons);
+      this.pickers
+        .filter(({ select }) =>
+          ['ql-font', 'ql-header'].some((it) => select.classList.contains(it)),
+        )
+        .forEach(useIconLabel);
       if (background) {
         fillSelect(background, colors, '#ffffff');
         this.pickers.push(
