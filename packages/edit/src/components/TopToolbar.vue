@@ -119,9 +119,14 @@
 </template>
 
 <style lang="scss">
-$icon-color: #333;
-$icon-accent-color: #607d8b;
-$icon-size: 1.5rem;
+// Theme colors and state overlays match Vuetify text buttons (TipTap toolbar)
+$icon-color: rgb(var(--v-theme-on-surface));
+$hover-background: rgba(var(--v-theme-on-surface), var(--v-hover-opacity));
+$active-background: rgba(var(--v-theme-on-surface), var(--v-activated-opacity));
+// Matches the TipTap (ce-html) toolbar: 30px buttons with 20px icons
+$icon-size: 1.25rem;
+$button-size: 1.875rem;
+$button-radius: 6px;
 
 .tce-html-toolbar {
   display: flex;
@@ -131,6 +136,7 @@ $icon-size: 1.5rem;
 }
 
 .ql-toolbar .icon {
+  display: block;
   width: $icon-size;
   height: $icon-size;
   font-size: $icon-size;
@@ -164,8 +170,8 @@ $icon-size: 1.5rem;
     content: '';
     display: block;
     width: 1px;
-    background: #e6e6e6;
-    margin: 0.125rem;
+    background: rgba(var(--v-border-color), var(--v-border-opacity));
+    margin: 0.25rem 0.125rem 0.25rem 0.25rem;
   }
 
   .ql-picker-label {
@@ -177,7 +183,7 @@ $icon-size: 1.5rem;
     border: none !important;
 
     .ql-picker-label {
-      background: rgba($icon-color, 0.08);
+      background: $hover-background;
     }
   }
 
@@ -185,7 +191,7 @@ $icon-size: 1.5rem;
   .ql-color-picker .ql-picker-label,
   .ql-icon-picker .ql-picker-label {
     padding: 0;
-    border-radius: 8px;
+    border-radius: $button-radius;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -194,32 +200,40 @@ $icon-size: 1.5rem;
   button,
   .ql-color-picker,
   .ql-icon-picker {
-    width: 2rem !important;
-    height: 2rem !important;
+    width: $button-size !important;
+    height: $button-size !important;
     padding: 0 !important;
   }
 
   .ql-header:not(button),
   .ql-font {
     width: unset !important;
-    height: 2rem;
+    height: $button-size;
 
     .ql-picker-label {
       display: flex;
       align-items: center;
       padding: 0 1.5rem 0 0.5rem;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: $button-radius;
+      font-size: 0.875rem;
     }
   }
 }
 
 .ql-toolbar.ql-snow {
   border: none;
+  padding: 0;
 
-  @mixin colorize($color, $background: none) {
+  .ql-formats button {
+    display: flex;
+    float: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @mixin colorize($background: none) {
     background: $background;
-    color: $icon-accent-color;
+    color: $icon-color;
 
     .icon {
       color: inherit;
@@ -234,33 +248,52 @@ $icon-size: 1.5rem;
     }
   }
 
+  .ql-picker,
+  .ql-picker-label,
+  button {
+    @include colorize;
+  }
+
+  button:hover,
+  button:focus-visible,
+  .ql-picker-label:hover {
+    @include colorize($background: $hover-background);
+  }
+
   button.ql-active,
   .ql-picker-label.ql-active {
-    @include colorize(
-      $color: $icon-accent-color,
-      $background: rgba($icon-accent-color, 0.12)
-    );
+    @include colorize($background: $active-background);
+  }
+
+  .ql-picker-options {
+    background: rgb(var(--v-theme-surface));
+    color: $icon-color;
+    border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+  }
+
+  .ql-picker-item:hover {
+    @include colorize;
   }
 
   .ql-picker-item.ql-selected {
-    @include colorize($color: $icon-accent-color);
+    @include colorize($background: $active-background);
   }
 }
 
+// Matches the Vuetify tooltip used by the TipTap toolbar
 .ql-toolbar .tippy-box {
-  $background-color: #2a2a2a;
-  $text-color: #fff;
+  $background-color: rgb(var(--v-theme-surface-variant));
   $arrow-size: 0.375rem;
 
   padding: 0.375rem 0.75rem;
-  background: rgba($background-color, 0.9);
-  border-radius: 8px;
+  background: $background-color;
+  border-radius: 4px;
 
   .tippy-arrow {
     top: -$arrow-size;
     border: $arrow-size solid transparent;
     border-top-width: 0;
-    border-bottom-color: rgba($background-color, 0.9);
+    border-bottom-color: $background-color;
   }
 
   .tippy-content {
@@ -268,7 +301,7 @@ $icon-size: 1.5rem;
     font-size: 0.875rem;
     font-weight: 500;
     text-align: center;
-    color: $text-color;
+    color: rgb(var(--v-theme-on-surface-variant));
   }
 }
 </style>

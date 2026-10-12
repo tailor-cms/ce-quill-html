@@ -74,7 +74,7 @@ watch(
 }
 
 .placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(var(--v-theme-on-surface), 0.5);
 }
 
 :deep(.ql-editor) {
@@ -83,7 +83,7 @@ watch(
 
   &.ql-blank::before {
     width: 100%;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(var(--v-theme-on-surface), 0.5);
     font-style: normal;
     left: 0.5rem;
     right: 0.5rem;
